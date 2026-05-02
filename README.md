@@ -1,45 +1,85 @@
-# 🛡️ AI Content Moderation System (FastAPI + ML)
+# 🛡️ AI Content Moderation System
 
-> A machine learning-powered web application that detects and filters toxic or harmful text in real time using NLP and a deployed API.
+> A machine learning-powered web application that detects and filters toxic or harmful text in real time using NLP, Scikit-learn, and a FastAPI deployed backend.
 
 ---
 
-## 📖 Overview
+## 📸 Demo
 
-This project builds an end-to-end AI content moderation system that:
+**Input — Text Entry:**
 
-* Trains a machine learning model on toxic comment data
-* Deploys the model using FastAPI
-* Provides a simple frontend interface for real-time predictions
+![Input](https://raw.githubusercontent.com/Kreetikakishore/ai-content-moderation/main/assets/input.png)
 
-The system helps automate moderation of user-generated content and reduces manual effort.
+**Output — Moderation Result:**
+
+![Output](https://raw.githubusercontent.com/Kreetikakishore/ai-content-moderation/main/assets/dashboard.png)
+
+---
+
+## 📌 Executive Summary
+
+User-generated content on digital platforms carries significant risk of harassment, hate speech, and toxic behavior. Manual moderation at scale is neither efficient nor scalable.
+
+This project builds an **end-to-end AI content moderation pipeline** that:
+
+- Trains a machine learning model on real toxic comment data
+- Deploys the model as a REST API using FastAPI
+- Provides a simple frontend interface for real-time predictions
+- Automates harmful content detection with high precision
 
 ---
 
 ## 🧠 How It Works
 
-1. User enters text in the frontend
-2. Request is sent to FastAPI backend
-3. Backend loads trained model (`.pkl`)
+1. User enters text in the frontend interface
+2. Request is sent to the FastAPI backend
+3. Backend loads the trained model (`.pkl`)
 4. Text is vectorized using TF-IDF
-5. Model predicts whether content is **Toxic / Safe**
-6. Result is returned to UI
+5. Model predicts whether content is **Toxic** or **Safe**
+6. Result is instantly returned to the UI
 
 ---
 
-## 🛠️ Tech Stack
+## 📊 Model Details
 
-* Python
-* FastAPI
-* Uvicorn
-* Scikit-learn
-* Pandas, NumPy
-* HTML (Frontend)
-* Joblib (Model saving/loading)
+| Property | Detail |
+|----------|--------|
+| Algorithm | Logistic Regression |
+| Text Representation | TF-IDF Vectorizer |
+| Classification Type | Binary (Safe / Toxic) |
+| Evaluation Metrics | Precision, Recall, F1-Score |
+| Model Format | Joblib `.pkl` |
 
 ---
 
-## 📂 Project Structure
+## 🧰 Technology Stack
+
+| Tool | Role |
+|------|------|
+| Python | Core programming |
+| FastAPI | REST API backend |
+| Uvicorn | ASGI server |
+| Scikit-learn | ML model training |
+| Pandas & NumPy | Data processing |
+| TF-IDF Vectorizer | Text feature extraction |
+| Joblib | Model saving & loading |
+| HTML | Frontend interface |
+
+---
+
+## ⚙️ Model Training Approach
+
+- Combined multiple toxicity labels into a unified severity score
+- Converted into binary classification:
+  - `0` → Safe
+  - `1` → Toxic
+- Applied TF-IDF vectorization for text representation
+- Trained Logistic Regression with optimized hyperparameters
+- Evaluated using full classification report
+
+---
+
+## 📂 Repository Structure
 
 ```
 ai-content-moderation/
@@ -54,6 +94,10 @@ ai-content-moderation/
 ├── frontend/
 │   └── index.html
 │
+├── assets/
+│   ├── input.png
+│   └── dashboard.png
+│
 ├── app.py
 ├── requirements.txt
 └── README.md
@@ -61,56 +105,34 @@ ai-content-moderation/
 
 ---
 
-## ⚙️ Model Training
+## 🚀 How to Run Locally
 
-* Combined multiple toxicity labels into a **severity score**
-* Converted into binary classification:
-
-  * 0 → Safe
-  * 1 → Toxic
-* Used:
-
-  * TF-IDF Vectorizer
-  * Logistic Regression
-
----
-
-## 🤖 Model Details
-
-* Algorithm: Logistic Regression
-* Text Representation: TF-IDF
-* Evaluation: Classification Report (Precision, Recall, F1-score)
-
----
-
-## ▶️ How to Run the Project
-
-### 1️⃣ Clone the repository
+### 1. Clone Repository
 
 ```bash
-git clone <your-repo-link>
+git clone https://github.com/Kreetikakishore/ai-content-moderation.git
 cd ai-content-moderation
 ```
 
-### 2️⃣ Install dependencies
+### 2. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Train the model (optional)
+### 3. Train the Model (optional)
 
 ```bash
 python model/train.py
 ```
 
-### 4️⃣ Run FastAPI server
+### 4. Run FastAPI Server
 
 ```bash
 uvicorn app:app --reload
 ```
 
-### 5️⃣ Open in browser
+### 5. Open in Browser
 
 ```
 http://127.0.0.1:8000
@@ -118,42 +140,42 @@ http://127.0.0.1:8000
 
 ---
 
-## 📸 Demo
-
-### 🧾 Enter Text for Moderation
-![Input](https://github.com/Kreetikakishore/AI-Content-Moderation/blob/ae33e9d50765522d95d8019b4c4dfaf96046277e/Screenshot%202026-04-03%20205247.png)
-
-### ⚠️ Toxicity Detection Result
-![Output](https://github.com/Kreetikakishore/AI-Content-Moderation/blob/0ad707eca3b1d634057b91e872f14df05ea57f6d/Screenshot%202026-04-03%20205259.png)
-
----
-
 ## 🌍 Real-World Applications
 
-* Social media moderation
-* Comment filtering systems
-* Online gaming chats
-* Community platforms
-
----
-
-## 💡 Future Improvements
-
-* Use advanced models like BERT
-* Add multi-class classification (toxic types)
-* Deploy on cloud (AWS / Render / Railway)
-* Add user authentication
+- Social media comment moderation
+- Online gaming chat filtering
+- Community platform safety
+- Customer review screening
+- Forum and blog moderation
 
 ---
 
 ## 📈 Key Impact
 
-✔ Automated detection of harmful content
-✔ Reduced manual moderation effort
-✔ Real-time prediction using API
+- ✅ Automated detection of harmful content at scale
+- ✅ Reduced manual moderation effort significantly
+- ✅ Real-time prediction via REST API
+- ✅ Easily integrable into any platform
 
 ---
 
-## 👩‍💻 Author
+## 💡 Future Improvements
+
+- Integrate advanced transformer models like **BERT**
+- Add multi-class classification for toxicity types
+- Deploy on cloud platforms (AWS / Render / Railway)
+- Add user authentication and API key management
+- Build a monitoring dashboard for moderation logs
+
+---
+
+## ⚠️ Note
+
+This project was developed as an AI and NLP portfolio case study to demonstrate end-to-end machine learning deployment, text classification, and API development skills.
+
+---
+
+## 👤 Author
 
 **Kreetika Kishore**
+Data Analytics & AI Portfolio Project | 2026
